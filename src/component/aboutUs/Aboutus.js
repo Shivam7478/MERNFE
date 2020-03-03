@@ -101,12 +101,14 @@ class Aboutus extends Component {
                       this.setState({
                         modalShow: true,
                         id: item._id,
-                        data: item
+                        data: item,
+                       
                       })
                     }
                     onDeleteUser={() => this.deleteUser(item._id)}
                     item={item}
                     i={i}
+                    updateListItem={this.pendingList}
                   />
                 ))
               : null}

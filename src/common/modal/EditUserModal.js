@@ -12,6 +12,16 @@ class EditUserModal extends Component {
   }
 
   updateHandler() {
+    if (this.state.title === "") {
+      this.setState({
+        title: this.props.data.title
+      });
+    }
+    if (this.state.description === "") {
+      this.setState({
+        description: this.props.data.description
+      });
+    }
     let { title, description } = this.state;
     let id = this.props.id;
     this.setState({

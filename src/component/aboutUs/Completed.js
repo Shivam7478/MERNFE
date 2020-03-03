@@ -79,8 +79,40 @@ class Completed extends Component {
       this.setState({ completed: result });
     }
   };
+
+  pendingList = async () => {
+    let result = await pendingList();
+    console.log("result", result);
+
+    if (result.data.length === 0) {
+      Swal.fire({
+        title: "There Is No Pending Task Available?",
+        text: "You Can Delete All Completed Task.",
+        icon: "warning",
+        showCancelButton: true
+      }).then(async result => {
+        // if (result.value) {
+        //   try {
+        //     let result = await deleteList(id);
+        //     if (result) {
+        //       this.completedList();
+        //       Swal.fire({
+        //         title: "Your file get Deleted",
+        //         icon: "success",
+        //         timer: 1000
+        //       });
+        //     }
+        //   } catch (error) {
+        //     console.log(error);
+        //   }
+        // }
+      });
+    }
+  };
+
   componentDidMount() {
     this.completedList();
+    this.pendingList();
   }
   render() {
     let completed = this.state.completed.data;
@@ -97,7 +129,8 @@ class Completed extends Component {
                       this.setState({
                         modalShow: true,
                         id: item._id,
-                        data: item
+                        data: item,
+                        updateList: this.completedList
                       })
                     }
                     onDeleteUser={() => this.deleteUser(item._id)}

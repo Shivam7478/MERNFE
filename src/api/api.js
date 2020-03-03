@@ -18,6 +18,11 @@ export const deleteList = id => {
     headers: { "x-auth-token": localStorage.getItem("token") }
   });
 };
+export const deletecompletedList = id => {
+  return axios.delete(localBaseUrl + "list/completed" + id, {
+    headers: { "x-auth-token": localStorage.getItem("token") }
+  });
+};
 export const completedList = () => {
   return axios.get(localBaseUrl + "list/completed", {
     headers: { "x-auth-token": localStorage.getItem("token") }

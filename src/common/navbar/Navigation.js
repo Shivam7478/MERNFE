@@ -45,17 +45,22 @@ class Navigation extends Component {
                   Home <span className="sr-only">(current)</span>
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link className="nav-link  textDecore" to="/pending">
                   {" "}
                   Pending <span className="sr-only">(current)</span>
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link className="nav-link  textDecore" to="/completed">
                   {" "}
                   Completed <span className="sr-only">(current)</span>
                 </Link>
+              </li>
+              <li className="nav-item">
+                <button className="btn btn-outline-danger">Add Todo</button>
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
