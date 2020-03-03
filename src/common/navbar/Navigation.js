@@ -5,13 +5,29 @@ import { withRouter } from "react-router-dom";
 import logo from "../../asset/images/logo.png";
 import twitterLogo from "../../asset/images/twitter.png";
 import Twitter from "../../common/modal/TwitterModal";
+import EditUserModal from "../modal/EditUserModal";
+import { addList } from "../../api/api";
+import Swal from "sweetalert2";
 class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalShow: false
+      modalShow: false,
+      addModalShow: false
     };
   }
+  updateHandler = async (id, data) => {
+    let result = await addList(data);
+    if (result) {
+      Swal.fire({
+        title: "User Added Successful",
+        text: "Updating page",
+        icon: "success",
+        timer: 1000
+      });
+      this.props.history.push("/completed");
+    }
+  };
   onClickHandler() {
     localStorage.clear();
     this.props.history.push("/");
@@ -60,7 +76,12 @@ class Navigation extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <button className="btn btn-outline-danger">Add Todo</button>
+                <button
+                  className="btn btn-outline-danger"
+                  onClick={() => this.setState({ addModalShow: true })}
+                >
+                  Add Todo
+                </button>
               </li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
@@ -87,6 +108,13 @@ class Navigation extends Component {
         <Twitter
           show={this.state.modalShow}
           onHide={() => this.setState({ modalShow: false })}
+        />
+        <EditUserModal
+          id=""
+          data=""
+          show={this.state.addModalShow}
+          onHide={() => this.setState({ addModalShow: false })}
+          onUpdatedata={this.updateHandler}
         />
       </React.Fragment>
     );

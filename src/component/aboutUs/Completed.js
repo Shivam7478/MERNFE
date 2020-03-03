@@ -6,7 +6,8 @@ import {
   deleteUserInfo,
   deleteList,
   updateList,
-  updateUserInfo
+  updateUserInfo,
+  deletecompletedList
 } from "../../api/api";
 import { MDBDataTable, MDBIcon } from "mdbreact";
 import EditUserModal from "../../common/modal/EditUserModal";
@@ -91,21 +92,21 @@ class Completed extends Component {
         icon: "warning",
         showCancelButton: true
       }).then(async result => {
-        // if (result.value) {
-        //   try {
-        //     let result = await deleteList(id);
-        //     if (result) {
-        //       this.completedList();
-        //       Swal.fire({
-        //         title: "Your file get Deleted",
-        //         icon: "success",
-        //         timer: 1000
-        //       });
-        //     }
-        //   } catch (error) {
-        //     console.log(error);
-        //   }
-        // }
+        if (result.value) {
+          try {
+            let result = await deletecompletedList();
+            if (result) {
+              this.completedList();
+              Swal.fire({
+                title: "Your file get Deleted",
+                icon: "success",
+                timer: 1000
+              });
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        }
       });
     }
   };

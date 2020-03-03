@@ -46,12 +46,14 @@ const Card = props => {
             style={{ cursor: "pointer" }}
           />
         </span>
-        <span onClick={props.onModalShow}>
-          <i
-            className="fa fa-pencil text-danger pl-3"
-            style={{ cursor: "pointer" }}
-          />
-        </span>
+        {props.item.status ? null : (
+          <span onClick={props.onModalShow}>
+            <i
+              className="fa fa-pencil text-danger pl-3"
+              style={{ cursor: "pointer" }}
+            />
+          </span>
+        )}
         <span>
           {props.item.status ? (
             <i

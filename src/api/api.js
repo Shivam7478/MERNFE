@@ -19,7 +19,7 @@ export const deleteList = id => {
   });
 };
 export const deletecompletedList = id => {
-  return axios.delete(localBaseUrl + "list/completed" + id, {
+  return axios.get(localBaseUrl + "list/deleteAllList", {
     headers: { "x-auth-token": localStorage.getItem("token") }
   });
 };
@@ -28,16 +28,17 @@ export const completedList = () => {
     headers: { "x-auth-token": localStorage.getItem("token") }
   });
 };
+export const addList = data => {
+  return axios.post(localBaseUrl + "list/", data, {
+    headers: { "x-auth-token": localStorage.getItem("token") }
+  });
+};
 export const updateList = (id, data) => {
-  return axios.put(
-    localBaseUrl + "list/update/" + id,
-    data,
-    {
-      headers : {
-        "x-auth-token": localStorage.getItem("token")
-      }
+  return axios.put(localBaseUrl + "list/update/" + id, data, {
+    headers: {
+      "x-auth-token": localStorage.getItem("token")
     }
-  );
+  });
 };
 export const getUserInfo = () => {
   return axios.get(localBaseUrl + "user");

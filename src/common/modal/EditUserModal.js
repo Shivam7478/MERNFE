@@ -1,6 +1,5 @@
 import { Modal, Button } from "react-bootstrap";
 import React, { Component } from "react";
-
 class EditUserModal extends Component {
   constructor(props) {
     super(props);
@@ -29,11 +28,11 @@ class EditUserModal extends Component {
     });
     if (this.state.title === "") {
       this.setState({
-        name: title
+        title: title
       });
     } else if (this.state.description === "") {
       this.setState({
-        email: description
+        description: description
       });
     } else {
       this.props.onUpdatedata(id, this.state);
@@ -60,7 +59,7 @@ class EditUserModal extends Component {
         {console.log("props are here........", { ...this.props })}
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Edit user
+            {id === "" ? "Add" : "Edit"} user
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -119,7 +118,7 @@ class EditUserModal extends Component {
             className="btn btn-success"
             onClick={this.updateHandler.bind(this)}
           >
-            Update
+            {id === "" ? "Add" : "Update"}
           </Button>
         </Modal.Footer>
       </Modal>
